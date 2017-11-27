@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:alpine
 
 ADD . /go/src/github.com/jorgechato/ferula-communis
 
