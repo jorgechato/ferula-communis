@@ -1,0 +1,15 @@
+version: "3"
+services:
+  prometheus:
+    image: quay.io/prometheus/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+  web:
+    image: ferula-communis
+    build: .
+    command: /go/bin/ferula-communis
+    ports:
+      - 8080:8080
+
