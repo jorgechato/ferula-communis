@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"net/http"
 	"time"
 )
@@ -10,8 +11,11 @@ import (
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
-	fmt.Fprintln(w, "Hi there!, You are in ", r.URL.Path)
+	defer func() {
+		duration := time.Since(start)
+		go latencyEndpoint(r.URL.Path, http.StatusOK, duration)
+	}()
 
-	duration := time.Since(start)
-	go latencyEndpoint(r.URL.Path, http.StatusOK, duration)
+	time.Sleep(time.Duration(rand.Intn(2)))
+	fmt.Fprintln(w, "Hi there!, You are in ", r.URL.Path)
 }

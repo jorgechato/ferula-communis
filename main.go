@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -17,5 +18,5 @@ func main() {
 	routes.HandleFunc("/master", HomeHandler)
 	routes.Handle("/metrics", promhttp.Handler())
 
-	http.ListenAndServe("0.0.0.0:8080", routes)
+	log.Fatal(http.ListenAndServe("0.0.0.0:8080", routes))
 }

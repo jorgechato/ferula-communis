@@ -1,7 +1,7 @@
 version: "3"
 services:
   prometheus:
-    image: quay.io/prometheus/prometheus:latest
+    image: prom/prometheus
     ports:
       - 9090:9090
     volumes:
