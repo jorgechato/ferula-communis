@@ -17,5 +17,5 @@ func main() {
 	routes.HandleFunc("/master", HomeHandler)
 	routes.Handle("/metrics", promhttp.Handler())
 
-	http.ListenAndServe("0.0.0.0:8080", Middleware(routes))
+	http.ListenAndServe("0.0.0.0:8080", routes)
 }

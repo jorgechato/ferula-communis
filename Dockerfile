@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:latest
 
 RUN go get github.com/jorgechato/ferula-communis
 
