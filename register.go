@@ -5,13 +5,12 @@ import (
 )
 
 var (
-	//Track the time of any endpoint response
+	// Track the time of any endpoint response
 	endpointLatencies = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
 			Namespace: "adidas",
-			Subsystem: "http_server",
-			Name:      "http_responses_total",
-			Help:      "The count of http responses issued, classified by code and method.",
+			Name:      "http_responses_Latency",
+			Help:      "The latency, classified by code and endpoint.",
 		},
 		[]string{
 			"endpoint",
@@ -20,7 +19,7 @@ var (
 	)
 )
 
-//Register all the Prometheus variables
+// Register all the Prometheus variables
 func Register() {
 	prometheus.Register(endpointLatencies)
 }

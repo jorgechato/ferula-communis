@@ -7,7 +7,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-func latencieEndpoint(path string, code int, duration time.Duration) {
+func latencyEndpoint(path string, code int, duration time.Duration) {
 	endpointLatencies.With(
 		prometheus.Labels{
 			"endpoint": path,

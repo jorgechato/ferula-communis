@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-//Hello World view
+// HomeHandler is a Hello World view
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Fprintln(w, "Hi there!, You are in ", r.URL.Path)
 
 	duration := time.Since(start)
-	go latencieEndpoint(r.URL.Path, http.StatusOK, duration)
+	go latencyEndpoint(r.URL.Path, http.StatusOK, duration)
 }
