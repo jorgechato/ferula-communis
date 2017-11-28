@@ -1,24 +1,43 @@
-version: "3"
+version: "3.5"
+
+
 services:
   prometheus:
+    container_name: prometheus
     image: prom/prometheus
     ports:
       - 9090:9090
+    depends_on:
+      - web
     volumes:
-      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - webapp
 
   web:
+    container_name: ferula-communis
     image: ferula-communis
     build: .
     command: /go/bin/ferula-communis
     ports:
       - 8080:8080
+    networks:
+      - webapp
 
   grafana:
+    container_name: grafana
     image: grafana/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=pass
     depends_on:
+      - web
       - prometheus
     ports:
       - 3000:3000
+    networks:
+      - webapp
+
+
+networks:
+  webapp:
+    name: webapp

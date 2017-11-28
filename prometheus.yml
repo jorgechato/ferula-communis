@@ -1,7 +1,7 @@
 global:
-  scrape_interval:     15s
+  scrape_interval: 15s
 scrape_configs:
   - job_name: 'ferula-communis'
     scrape_interval: 5s
     static_configs:
-      - targets: ['ferula-communis_web:8080']
+      - targets: ['ferula-communis:8080']
