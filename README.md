@@ -2,7 +2,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/jorgechato/ferula-communis)](https://goreportcard.com/report/github.com/jorgechato/ferula-communis)
 
 A demo of a GO web service build with gorilla/mux and monitored with prometheus
-## Install & Run
+## Manual Installation & Run
 ### Web service
 ```zsh
 $ docker build -t ferula-communis .
@@ -25,10 +25,15 @@ scrape_configs:
 Mount that configuration file in a Docker volume and run Prometheus again:
 
 ```zsh
-$ docker run -p 9090:9090 -v ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+$ docker run -d -p 9090:9090 -v ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml --name prometheus prom/prometheus
 ```
 
-### With docker-compose
+### Set Grafana
+```zsh
+$ docker run -d -p 3000:3000 --name=grafana -e "GF_SECURITY_ADMIN_PASSWORD=pass" grafana/grafana
+```
+
+## With docker-compose
 ```zsh
 $ docker-compose up -d
 ```
